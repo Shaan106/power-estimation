@@ -4,3 +4,6 @@
 [submodule "external/cudd"]
 	path = external/cudd
 	url = https://github.com/ivmai/cudd.git
+[submodule "external/skywater-pdk"]
+	path = external/skywater-pdk
+	url = https://github.com/google/skywater-pdk.git
