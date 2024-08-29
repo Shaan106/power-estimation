@@ -4,10 +4,12 @@ module clocked_adder (
     output wire [4:0] sum
 );
 
-    // reg [4:0] temp;
-    // always @(posedge clk) begin
-    //     temp <= A + B;
-    // end
 
-    assign sum = A + B;
+    reg [4:0] temp;
+    always @(posedge clk) begin
+        temp <= A + B;
+    end
+
+    assign sum = temp;
+
 endmodule

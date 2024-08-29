@@ -1,11 +1,24 @@
 # Read the Verilog file
-read_verilog clocked_adder.v
+# read_verilog clocked_adder.v
 
 # Synthesize the design, targeting the SkyWater 130nm standard cell library
-synth -top clocked_adder
+# synth -top clocked_adder
 
 # Map the design to the SkyWater 130nm standard cells
-abc -liberty sky130_fd_sc_hd__ff_n40C_1v65.lib
+# abc -liberty sky130_fd_sc_hd__ff_n40C_1v65.lib
 
 # Write the structural Verilog netlist
+# write_verilog -noattr clocked_adder_synth.v
+
+# Read the Verilog file
+read_verilog clocked_adder.v
+
+# Perform synthesis with a generic library
+synth -top clocked_adder
+
+# Map to standard cells (replace 'mycells.lib' with your library)
+dfflibmap -liberty sky130_fd_sc_hd__ff_n40C_1v65.lib
+abc -liberty sky130_fd_sc_hd__ff_n40C_1v65.lib
+
+# Write the gate-level netlist to a file
 write_verilog -noattr clocked_adder_synth.v
