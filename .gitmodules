@@ -1,0 +1,3 @@
+[submodule "external/OpenSTA"]
+	path = external/OpenSTA
+	url = https://github.com/The-OpenROAD-Project/OpenSTA.git
