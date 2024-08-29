@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.9"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "STA",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "OpenSTA::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-OpenSTA-Debug-43433860c23ea537b8cc.json",
+					"name" : "OpenSTA",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sta::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sta-Debug-235f5e4d98b3022a263d.json",
+					"name" : "sta",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sta_swig::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sta_swig-Debug-0b93ae65de0e4c02352b.json",
+					"name" : "sta_swig",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sta_swig_swig_compilation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sta_swig_swig_compilation-Debug-780fed3a0347e3d653b8.json",
+					"name" : "sta_swig_swig_compilation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sta_tags::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sta_tags-Debug-8065f90b05c2139b5107.json",
+					"name" : "sta_tags",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/workspaces/power-estimation/build",
+		"source" : "/workspaces/power-estimation/external/OpenSTA"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

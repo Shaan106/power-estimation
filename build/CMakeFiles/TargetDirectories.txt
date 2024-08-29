@@ -1,0 +1,11 @@
+/workspaces/power-estimation/build/CMakeFiles/install/local.dir
+/workspaces/power-estimation/build/CMakeFiles/install.dir
+/workspaces/power-estimation/build/CMakeFiles/list_install_components.dir
+/workspaces/power-estimation/build/CMakeFiles/rebuild_cache.dir
+/workspaces/power-estimation/build/CMakeFiles/edit_cache.dir
+/workspaces/power-estimation/build/CMakeFiles/sta_tags.dir
+/workspaces/power-estimation/build/CMakeFiles/install/strip.dir
+/workspaces/power-estimation/build/CMakeFiles/OpenSTA.dir
+/workspaces/power-estimation/build/CMakeFiles/sta.dir
+/workspaces/power-estimation/build/CMakeFiles/sta_swig_swig_compilation.dir
+/workspaces/power-estimation/build/CMakeFiles/sta_swig.dir
