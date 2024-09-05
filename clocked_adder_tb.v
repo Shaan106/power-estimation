@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module clocked_adder_tb;
     reg [3:0] A, B;
     reg clk;

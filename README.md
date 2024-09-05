@@ -57,7 +57,16 @@ echo "export PATH=$PATH:/workspaces/power-estimation/external/OpenSTA/app" >> ~/
 To run:
 ```sh
 yosys -s synth.ys
-# iverilog -o clocked_adder_tb clocked_adder_tb.v clocked_adder.v
-# vvp clocked_adder_tb
+iverilog -o clocked_adder clocked_adder_tb.v clocked_adder.v
+vvp clocked_adder
 sta power_sta.tcl
 ```
+
+## Notes
+
+the .ys file is a yosys script file. It is a text file that contains commands that yosys will execute. The -s flag tells yosys to run the commands in the file.
+
+The .tcl file is a tcl script file. It is a text file that contains commands that the tcl interpreter will execute. The sta command is a tcl command that runs the sta tool.
+
+.tcl contains how to run the openSTA tool. ie do you want to report power etc
+full documentation: [link](https://github.com/The-OpenROAD-Project/OpenSTA/blob/master/doc/OpenSTA.pdf)

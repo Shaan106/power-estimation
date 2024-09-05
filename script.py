@@ -21,7 +21,7 @@ def create_yosys_synth_file(verilog_file, process_library):
     with open("synth.ys", "w") as f:
         f.write(content)
 
-def create_power_opesta_tcl_file(verilog_file, verilog_synth_file, process_library, clock_period):
+def create_power_opesta_tcl_file(verilog_file, verilog_synth_file, top_level_module, process_library, clock_period):
 
     content=f"""
     # Read the synthesized netlist
@@ -31,7 +31,7 @@ def create_power_opesta_tcl_file(verilog_file, verilog_synth_file, process_libra
     read_liberty {process_library}
 
     # Link the design to resolve references
-    link_design clocked_adder
+    link_design {top_level_module}
 
     # Read the design constraints
     # read_sdc clocked_adder.sdc
