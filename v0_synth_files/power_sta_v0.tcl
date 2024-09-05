@@ -26,7 +26,8 @@ user_run_time
 
 # Perform a simplified power analysis based on the static power and estimated switching activity
 report_power
-report_checks
+
+# report_checks
 # report_units
 # could be used to estimate latency?
 # report_checks -path_delay max -group_count 5
