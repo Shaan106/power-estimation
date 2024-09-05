@@ -12,7 +12,6 @@ sudo apt-get update
 sudo apt-get install flex
 sudo apt-get install libeigen3-dev
 sudo apt-get install autoconf automake
-
 ```
 
 
@@ -50,12 +49,15 @@ yosys -V
 ../app/sta --version
 # export PATH=$PATH:/workspaces/power-estimation/external/OpenSTA/app 
 # ^ that might be needed to run sta globally, may need to run this again if you close the terminal.
+# in order to perma - do this
+echo "export PATH=$PATH:/workspaces/power-estimation/external/OpenSTA/app" >> ~/.bashrc
+
 ```
 
 To run:
 ```sh
 yosys -s synth.ys
-iverilog -o clocked_adder_tb clocked_adder_tb.v clocked_adder.v
-vvp clocked_adder_tb
+# iverilog -o clocked_adder_tb clocked_adder_tb.v clocked_adder.v
+# vvp clocked_adder_tb
 sta power_sta.tcl
 ```
