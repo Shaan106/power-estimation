@@ -27,6 +27,8 @@ user_run_time
 # Perform a simplified power analysis based on the static power and estimated switching activity
 report_power
 
+exit
+
 # report_checks
 # report_units
 # could be used to estimate latency?

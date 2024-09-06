@@ -86,11 +86,11 @@
 	[
 		{
 			"backtrace" : 3,
-			"id" : "sta_swig::@6890427a1f51a3e7e1df"
+			"id" : "OpenSTA::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 3,
-			"id" : "OpenSTA::@6890427a1f51a3e7e1df"
+			"id" : "sta_swig::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "sta::@6890427a1f51a3e7e1df",

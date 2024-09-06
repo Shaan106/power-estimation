@@ -131,8 +131,8 @@ CMakeFiles/OpenSTA.dir/clean:
 # Target rules for target CMakeFiles/sta.dir
 
 # All Build rule for target.
-CMakeFiles/sta.dir/all: CMakeFiles/sta_swig.dir/all
 CMakeFiles/sta.dir/all: CMakeFiles/OpenSTA.dir/all
+CMakeFiles/sta.dir/all: CMakeFiles/sta_swig.dir/all
 	$(MAKE) -f CMakeFiles/sta.dir/build.make CMakeFiles/sta.dir/depend
 	$(MAKE) -f CMakeFiles/sta.dir/build.make CMakeFiles/sta.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/power-estimation/build/CMakeFiles --progress-num=98 "Built target sta"
@@ -186,8 +186,8 @@ CMakeFiles/sta_swig_swig_compilation.dir/clean:
 # Target rules for target CMakeFiles/sta_swig.dir
 
 # All Build rule for target.
-CMakeFiles/sta_swig.dir/all: CMakeFiles/sta_swig_swig_compilation.dir/all
 CMakeFiles/sta_swig.dir/all: CMakeFiles/OpenSTA.dir/all
+CMakeFiles/sta_swig.dir/all: CMakeFiles/sta_swig_swig_compilation.dir/all
 	$(MAKE) -f CMakeFiles/sta_swig.dir/build.make CMakeFiles/sta_swig.dir/depend
 	$(MAKE) -f CMakeFiles/sta_swig.dir/build.make CMakeFiles/sta_swig.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/power-estimation/build/CMakeFiles --progress-num=99 "Built target sta_swig"

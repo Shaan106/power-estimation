@@ -13,8 +13,8 @@
 		[
 			"add_library",
 			"swig_add_library",
-			"add_dependencies",
 			"target_link_libraries",
+			"add_dependencies",
 			"target_include_directories",
 			"set_source_files_properties"
 		],
@@ -42,15 +42,15 @@
 			},
 			{
 				"command" : 2,
-				"file" : 0,
-				"line" : 723,
-				"parent" : 1
-			},
-			{
-				"command" : 3,
 				"file" : 1,
 				"line" : 473,
 				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 723,
+				"parent" : 1
 			},
 			{
 				"command" : 4,
@@ -97,11 +97,11 @@
 					"path" : "/usr/include/tcl"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "/workspaces/power-estimation/external/OpenSTA/include"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"isSystem" : true,
 					"path" : "/usr/include/eigen3"
 				}
@@ -117,11 +117,11 @@
 	[
 		{
 			"backtrace" : 3,
-			"id" : "sta_swig_swig_compilation::@6890427a1f51a3e7e1df"
+			"id" : "OpenSTA::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 4,
-			"id" : "OpenSTA::@6890427a1f51a3e7e1df"
+			"id" : "sta_swig_swig_compilation::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "sta_swig::@6890427a1f51a3e7e1df",

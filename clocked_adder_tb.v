@@ -28,6 +28,6 @@ module clocked_adder_tb;
     end
 
     // Clock generation
-    always #5 clk = ~clk;
+    always #100 clk = ~clk;
 
 endmodule

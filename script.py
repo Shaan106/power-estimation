@@ -1,4 +1,7 @@
+
 import subprocess
+# for pattern matching
+import re
 
 def create_yosys_synth_file(processing_element, process_library):
     # ie process_library = "sky130_fd_sc_hd__ff_n40C_1v65.lib"
@@ -23,12 +26,16 @@ def create_yosys_synth_file(processing_element, process_library):
 
 def create_power_opesta_tcl_file(verilog_file, process_library, clock_period):
 
+    incl_switching_activity = False
     switching_activity = 0.2
+    comment_sw = "# "
+    if incl_switching_activity:
+        comment_sw = ""
 
     debug = False
-    comment = ""
-    if not debug:
-        comment = "# "
+    comment_db = "# "
+    if debug:
+        comment_db = ""
 
     content=f"""
     # Read the synthesized netlist
@@ -46,16 +53,19 @@ def create_power_opesta_tcl_file(verilog_file, process_library, clock_period):
 
     # Manually estimate switching activity (you may have to estimate this externally)
     # switching activity, 0.2 normal??
-    # set_power_activity -input -activity {switching_activity}
+    {comment_sw} set_power_activity -input -activity {switching_activity}
     # for example when a certain port will never toggle:
     # set_power_activity -input_port reset -activity 0.0
     read_power_activities -vcd {verilog_file}.vcd
 
     # debug statement
-    {comment}check_setup -verbose
+    {comment_db}check_setup -verbose
 
     # Perform a simplified power analysis based on the static power and estimated switching activity
     report_power
+
+    # exit
+    exit
 
     # report_checks
     # report_units
@@ -91,61 +101,48 @@ def run_tool(verilog_file, process_library, clock_period):
 
     # Run OpenSTA
     opensta_cmd = "sta power_analysis.tcl"
-    subprocess.run(opensta_cmd, shell=True, check=True)
-
-    # quit opensta
-    quit_cmd = "quit"
-    subprocess.run(quit_cmd, shell=True, check=True)
+    result = subprocess.run(opensta_cmd, shell=True, check=True, capture_output=True, text=True)
 
 
-run_tool("clocked_adder", "sky130_fd_sc_hd__ff_n40C_1v65", 10)
+    # Pattern to match each row of the power data
+    pattern = re.compile(r"(\w+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)%?")
 
-# def run_yosys(verilog_file, top_module):
-#     cmd = f"yosys -p \"read_verilog {verilog_file}; synth -top {top_module}; write_verilog synth_design.v\""
-#     subprocess.run(cmd, shell=True, check=True)
+    # Dictionary to store power data
+    power_data = {}
 
-# def run_simulation(verilog_file, testbench_file):
-#     subprocess.run(f"iverilog -o sim_design.vvp {verilog_file} {testbench_file}", shell=True, check=True)
-#     subprocess.run("vvp sim_design.vvp", shell=True, check=True)
+    # Find all matches and store them in the dictionary
+    for match in pattern.findall(result.stdout):
+        group_name = match[0]
+        internal_power = float(match[1])
+        switching_power = float(match[2])
+        leakage_power = float(match[3])
+        total_power = float(match[4])
+        percentage = float(match[5])
+        
+        # Store each entry in a nested dictionary
+        power_data[group_name] = {
+            'Internal Power': internal_power,
+            'Switching Power': switching_power,
+            'Leakage Power': leakage_power,
+            'Total Power': total_power,
+            'Percentage': percentage
+        }
 
-# def create_sdc(clock_period):
-#     with open("constraints.sdc", "w") as f:
-#         f.write(f"create_clock -name clk -period {clock_period} [get_ports clk]\n")
-#         f.write("set_input_delay -clock clk 0 [all_inputs]\n")
-#         f.write("set_output_delay -clock clk 0 [all_outputs]\n")
 
-# def run_opensta(liberty_file, clock_period):
-#     create_sdc(clock_period)
-#     with open("power_analysis.tcl", "w") as f:
-#         f.write(f"read_liberty {liberty_file}\n")
-#         f.write("read_verilog synth_design.v\n")
-#         f.write("link_design your_module_name\n")
-#         f.write("read_sdc constraints.sdc\n")
-#         f.write("read_vcd dump.vcd\n")
-#         f.write("report_power\n")
+    return power_data
+
+
+clk_freq = 15_700_000 #Hz
+clk_period = 1 / clk_freq #s
+clk_period_ns = clk_period * 1e9 #ns
+
+result = run_tool(verilog_file="clocked_adder", 
+                  process_library="sky130_fd_sc_hd__ff_n40C_1v65", 
+                  clock_period=clk_period_ns)
+
+print("\n\npy out\n\n")
+
+for (key, value) in result.items():
+    print(key, ":", value)
     
-#     result = subprocess.run("sta power_analysis.tcl", shell=True, capture_output=True, text=True)
-#     return result.stdout
-
-# def extract_power(sta_output):
-#     match = re.search(r"Total\s+[\d.]+\s+(\d+\.\d+)", sta_output)
-#     if match:
-#         return float(match.group(1))
-#     return None
-
-# def estimate_power(verilog_file, testbench_file, top_module, liberty_file, clock_period):
-#     run_yosys(verilog_file, top_module)
-#     run_simulation(verilog_file, testbench_file)
-#     sta_output = run_opensta(liberty_file, clock_period)
-#     power = extract_power(sta_output)
-#     return power
-
-# # Example usage
-# verilog_file = "your_design.v"
-# testbench_file = "your_testbench.v"
-# top_module = "your_module_name"
-# liberty_file = "your_library.lib"
-# clock_period = 10  # in nanoseconds
-
-# power = estimate_power(verilog_file, testbench_file, top_module, liberty_file, clock_period)
-# print(f"Estimated total power: {power} W")
+# print(clk_period)
